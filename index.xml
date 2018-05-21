@@ -6,6 +6,7 @@
     <description>Recent content on Lago Bello</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>Copyright (c) 2017 - 2018, Hacienda Lakeview; all rights reserved.</copyright>
     <lastBuildDate>Sun, 29 Apr 2018 15:21:53 +0100</lastBuildDate>
     
 	<atom:link href="https://www.lagobello.com/index.xml" rel="self" type="application/rss+xml" />
@@ -86,7 +87,7 @@ The following has been completed for phase 1.
       <description>Below is an image indicating vacant lots.
 Please click here to download a PDF file with lot specs.
 Modify this document here!
- . </description>
+. </description>
     </item>
     
   </channel>
