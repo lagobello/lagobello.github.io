@@ -1,170 +1,227 @@
-var leaflet_map = L.map('mapid').setView([26.053611, -97.552014], 16);
+var styleLake = new ol.style.Style({
+  fill: new ol.style.Fill({
+    color: '#92c5eb'
+  })
+});
 
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-  maxZoom: 18,
-  attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-    '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-    'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-  id: 'mapbox.light'
-}).addTo(leaflet_map);
-
-
-// control that shows lot info on hover
-var info = L.control();
-
-info.onAdd = function(leaflet_map) {
-  this._div = L.DomUtil.create('div', 'info');
-  this.update();
-  return this._div;
+var lotStyles = {
+        'FOR SALE': new ol.style.Style({
+			fill: new ol.style.Fill({
+			color: '#2dd187'
+			}),
+			stroke: new ol.style.Stroke({
+            color: '#D3D3D3',
+            width: 2
+			}),
+		}),
+        'PRE-SALE': new ol.style.Style({
+			fill: new ol.style.Fill({
+			color: '#885ead'
+		}),
+			stroke: new ol.style.Stroke({
+            color: '#D3D3D3',
+            width: 2
+			}),
+        }),
+        'SOLD': new ol.style.Style({
+			fill: new ol.style.Fill({
+			color: '#c03425'
+		}),
+			stroke: new ol.style.Stroke({
+            color: '#D3D3D3',
+            width: 2
+			}),
+        }),
 };
 
-info.update = function(props) {
-  this._div.innerHTML = '<h4>Lot info:</h4>' + 
-    (props ? '<b>' + props.fid + ' lot ID</sup>':'Hover over a lot');
+var stylePark = new ol.style.Style({
+  fill: new ol.style.Fill({
+    color: '#6b8e23'
+  })
+});
+
+var styleStreet = new ol.style.Style({
+  fill: new ol.style.Fill({
+    color: '#6F6E63'
+  }),
+  stroke: new ol.style.Stroke({
+          color: '#fade84',
+          width: 2
+  }),
+});
+
+var styleHighlight = new ol.style.Style({
+  stroke: new ol.style.Stroke({
+          color: 'blue',
+          width: 3
+  }),
+});
+
+mapboxKey = 'pk.eyJ1IjoibGFnb3ZpdHRvcmlvIiwiYSI6ImNqazZvYWdnZTB6bjMzcG1rcDR1bGpncm0ifQ.E_grlJASX59FUqTlksn09Q'
+
+/* var layerVectorTileMapboxStreets =  new ol.layer.VectorTile({
+    declutter: true,
+    source: new ol.source.VectorTile({
+      attributions: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> ' +
+        '© <a href="https://www.openstreetmap.org/copyright">' +
+        'OpenStreetMap contributors</a>',
+      format: new ol.format.MVT(),
+      url: 'https://{a-d}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/' +
+                  '{z}/{x}/{y}.vector.pbf?access_token=' + mapboxKey
+	}),
+            style: createMapboxStreetsV6Style(ol.style.Style, ol.style.Fill, ol.style.Stroke, ol.style.Icon, ol.style.Text)
+}); */
+
+var layerMapboxSatellite =  new ol.layer.Tile({
+    source: new ol.source.XYZ({
+      attributions: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> ',
+      url: 'https://a.tiles.mapbox.com/v4/mapbox.satellite/' +
+                  '{z}/{x}/{y}.png?access_token=' + mapboxKey
+	}),
+	opacity: 1.0
+});
+
+var layerVectorLake = new ol.layer.Vector({
+	source: new ol.source.Vector({
+		format: new ol.format.GeoJSON(),
+		url: '/files/lake.geojson',
+		}),
+	style: styleLake,
+	opacity: 0.8
+});
+
+var styleFunction = function(feature) {
+   return lotStyles[feature.get('status')];
 };
 
-info.addTo(leaflet_map);
+var layerVectorLots = new ol.layer.Vector({
+	source: new ol.source.Vector({
+		format: new ol.format.GeoJSON(),
+		url: '/files/lots.geojson'
+		}),
+	style: styleFunction,
+	opacity: 0.5
+});
+
+var layerVectorPark =  new ol.layer.Vector({
+	source: new ol.source.Vector({
+		format: new ol.format.GeoJSON(),
+		url: '/files/park.geojson'
+		}),
+	style: stylePark,
+	opacity: 0.5
+});
+
+var layerVectorStreet = new ol.layer.Vector({
+	source: new ol.source.Vector({
+		format: new ol.format.GeoJSON(),
+		url: '/files/street.geojson'
+		}),
+	style: styleStreet,
+	opacity: 0.8
+});
+
+var layerOsmStreet = new ol.layer.Tile({
+  source: new ol.source.OSM(),
+  	opacity: 0.6
+});
+
+var controlMousePosition = new ol.control.MousePosition({
+  coordinateFormat: function(coordinate) {
+      return ol.coordinate.format(coordinate, '{y}, {x}', 4);},
+  projection: 'EPSG:4326',
+  // comment the following two lines to have the mouse position
+  // be placed within the map.
+  //className: 'custom-mouse-position',
+  //target: document.getElementById('mouse-position'),
+  undefinedHTML: ''
+}); 
+
+var controlDefault = new ol.control.defaults({
+        attributionOptions: {
+            collapsible: true
+            },
+        }).extend([controlMousePosition]);
+
+var olMap = new ol.Map({
+        target: 'ol-map',
+		controls: controlDefault,
+        layers: [
+			layerMapboxSatellite,
+			layerOsmStreet,
+		  	layerVectorLake,
+			layerVectorLots,
+			layerVectorPark,
+			layerVectorStreet
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([-97.553, 26.053]),
+		  rotation: Math.PI / 2.17,
+          zoom: 17
+	})
+});
 
 
-// get color depending on population density value
-function getColor(d) {
-  return d > 56 ? '#800026' :
-    d > 48 ? '#BD0026' :
-    d > 40 ? '#E31A1C' :
-    d > 32 ? '#FC4E2A' :
-    d > 24 ? '#FD8D3C' :
-    d > 16 ? '#FEB24C' :
-    d > 8 ? '#FED976' :
-    '#FFEDA0';
-}
+var featureOverlayHighlight = new ol.layer.Vector({
+	source: new ol.source.Vector(),
+    map: olMap,
+    style: styleHighlight
+});
 
-function style_lots(feature) {
-  return {
-    weight: 2,
-    opacity: 1,
-    color: 'white',
-    dashArray: '3',
-    fillOpacity: 0.7,
-    fillColor: getColor(feature.properties.fid)
-  };
-}
+var highlight;
 
-function style_lake(feature) {
-  return {
-    weight: 2,
-    opacity: 1,
-    color: 'white',
-    dashArray: '3',
-    fillOpacity: 0.7,
-    fillColor: '#0000ff'
-  };
-}
-
-function style_street(feature) {
-  return {
-    weight: 2,
-    opacity: 1,
-    color: 'white',
-    dashArray: '3',
-    fillOpacity: 0.7,
-    fillColor: '#800080'
-  };
-}
-
-function highlightFeature(e) {
-  var layer = e.target;
-
-  layer.setStyle({
-    weight: 5,
-    color: '#666',
-    dashArray: '',
-    fillOpacity: 0.7
-  });
-
-  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-    layer.bringToFront();
+var featureHighlight = function(feature) {
+  
+  if (feature !== highlight) {
+    if (highlight) {
+      featureOverlayHighlight.getSource().removeFeature(highlight);
+    }
+    if (feature) {
+      featureOverlayHighlight.getSource().addFeature(feature);
+    }
+    highlight = feature;
   }
-
-  info.update(layer.feature.properties);
-}
-
-var geojsonLayerLots;
-
-function resetHighlight(e) {
-  geojsonLayerLots.resetStyle(e.target);
-  info.update();
-}
-
-function zoomToFeature(e) {
-  leaflet_map.fitBounds(e.target.getBounds());
-}
-
-function onEachFeature(feature, layer) {
-  layer.on({
-    mouseover: highlightFeature,
-    mouseout: resetHighlight,
-    click: zoomToFeature
-  });
-}
-
-console.log("loading layers")
-var geojsonLayerLake = new L.GeoJSON.AJAX("/lagobello-www-hugo-universal/files/lake.geojson", {
-  style: style_lake
-});
-var geojsonLayerLots = new L.GeoJSON.AJAX("/lagobello-www-hugo-universal/files/lots.geojson", {
-  style: style_lots,
-  onEachFeature: onEachFeature
-});
-var geojsonLayerStreet = new L.GeoJSON.AJAX("/lagobello-www-hugo-universal/files/street.geojson", {
-  style: style_street
-});
-
-console.log("Adding layers to leaflet_map")
-geojsonLayerLake.addTo(leaflet_map);
-geojsonLayerLots.addTo(leaflet_map);
-geojsonLayerStreet.addTo(leaflet_map);
-
-
-// Add layers from in memory
-//	geojsonLayerLots = L.geoJson(lots, {
-//		style: style_lots,
-//		onEachFeature: onEachFeature
-//	}).addTo(leaflet_map);
-//	
-//	geojsonLayerLake = L.geoJson(lake, {
-//		style: style_lake,
-//	}).addTo(leaflet_map);
-//	
-//	geojsonLayerStreet = L.geoJson(street, {
-//		style: style_street,
-//	}).addTo(leaflet_map);
-//	
-
-leaflet_map.attributionControl.addAttribution('Map by vitto');
-
-
-var legend = L.control({
-  position: 'bottomright'
-});
-
-legend.onAdd = function(leaflet_map) {
-
-  var div = L.DomUtil.create('div', 'info legend');
-  var grades = [0, 8, 16, 24, 32];
-  var labels = [];
-  var label_words = ["sold", "not sold", "reserved", "pending", "for lake use"];
-  var from, to;
-
-  for (var i = 0; i < grades.length; i++) {
-    from = grades[i];
-    to = grades[i + 1];
-
-    labels.push(
-      '<i style="background:' + getColor(from + 1) + '"></i> ' +
-      label_words[i]);
-  }
-
-  div.innerHTML = labels.join('<br>');
-  return div;
 };
-legend.addTo(leaflet_map);
+
+var retrieveFeature = function(pixel) {
+  var feature = olMap.forEachFeatureAtPixel(pixel, function(feature) {
+    return feature;
+  });
+  return feature;
+};
+
+var displayFeatureInfo = function(feature) {
+
+  var info = document.getElementById('feature-name');
+  if (feature) {
+    var format = new ol.format.GeoJSON();
+	var turfFeature = format.writeFeatureObject(feature, {'featureProjection': 'EPSG:3857'});
+    var area = turf.area(turfFeature);
+	
+      info.innerHTML = 'The status for area  ' + feature.get('name') + '  is  ' + feature.get('status') + '  and area is  ' + area.toFixed(2) + ' square meters or  ' +  (10.7639*area).toFixed(2) + ' square feet';
+    } else {
+      info.innerHTML = 'Please hover, click, or tap on a feature for more info!';
+    }
+
+};
+
+ olMap.on('pointermove', function(evt) {
+   if (evt.dragging) {
+     return;
+   }
+   var pixel = olMap.getEventPixel(evt.originalEvent);
+   var feature = retrieveFeature(pixel);
+   displayFeatureInfo(feature);
+   featureHighlight(feature);
+ });
+
+ olMap.on('click', function(evt) {
+   var feature = retrieveFeature(evt.pixel);
+   displayFeatureInfo(feature);
+   featureHighlight(feature);
+   
+   var extent = feature.getGeometry().getExtent();
+   olMap.getView().fit(extent, {duration: 500, padding: [50,50,50,50]})
+  
+ });
+
