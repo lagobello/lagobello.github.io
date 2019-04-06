@@ -181,12 +181,9 @@ var layerSwitcher = new ol.control.LayerSwitcher({
 
 var controlMousePosition = new ol.control.MousePosition({
   coordinateFormat: function(coordinate) {
-      return ol.coordinate.format(coordinate, '{y}, {x}', 4);},
+      return ol.coordinate.format(coordinate, '<span>{y}, {x}</span>', 4);},
   projection: 'EPSG:4326',
-  // comment the following two lines to have the mouse position
-  // be placed within the map.
-  // className: 'ol-control ol-mouse-position',
-  //target: document.getElementById('mouse-position'),
+  className: 'ol-control ol-mouse-position',
   undefinedHTML: ''
 }); 
 
@@ -218,6 +215,7 @@ var olMap = new ol.Map({
 		new ol.control.Attribution(),
 		new ol.control.Rotate(),
 		new ol.control.Zoom(),
+		new ol.control.FullScreen(),
 		// new ol.control.ScaleLine(),
 		controlMousePosition,
 		layerSwitcher
