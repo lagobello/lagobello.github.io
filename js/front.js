@@ -19,13 +19,13 @@ $(function () {
   animations()
   counters()
   demo()
-  //contactFormAjax()
+  contactFormAjax()
   contactFormPost()
 })
 
 // Ajax contact
 function contactFormAjax () {
-  var form = $('.contact-form')
+  var form = $('.contact-form-ajax')
   form.submit(function () {
     $this = $(this)
     $.post($(this).attr('action'),
@@ -43,7 +43,7 @@ function contactFormAjax () {
 }
 
 function contactFormPost(){
-    var form = $('.contact-form')
+    var form = $('.contact-form-post')
 }
 
 /* for demo purpose only - can be deleted */
