@@ -19,11 +19,12 @@ $(function () {
   animations()
   counters()
   demo()
-  contactForm()
+  //contactFormAjax()
+  contactFormPost()
 })
 
 // Ajax contact
-function contactForm () {
+function contactFormAjax () {
   var form = $('.contact-form')
   form.submit(function () {
     $this = $(this)
@@ -39,6 +40,10 @@ function contactForm () {
       , 'json')
     return false
   })
+}
+
+function contactFormPost(){
+    var form = $('.contact-form')
 }
 
 /* for demo purpose only - can be deleted */
