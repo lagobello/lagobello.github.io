@@ -20,12 +20,12 @@ $(function () {
   counters()
   demo()
   contactFormAjax()
-  contactFormPost()
 })
 
 // Ajax contact
 function contactFormAjax () {
   var form = $('.contact-form-ajax')
+  if (typeof form === 'undefined') return false
   form.submit(function () {
     $this = $(this)
     $.post($(this).attr('action'),
@@ -40,10 +40,6 @@ function contactFormAjax () {
       , 'json')
     return false
   })
-}
-
-function contactFormPost(){
-    var form = $('.contact-form-post')
 }
 
 /* for demo purpose only - can be deleted */
