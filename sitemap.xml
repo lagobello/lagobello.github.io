@@ -52,6 +52,10 @@
   </url>
   
   <url>
+    <loc>https://www.lagobello.com/telemetry/</loc>
+  </url>
+  
+  <url>
     <loc>https://www.lagobello.com/tags/</loc>
     <priority>0</priority>
   </url>
