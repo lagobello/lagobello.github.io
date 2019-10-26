@@ -94,7 +94,7 @@ The following has been completed for phase 1.
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.lagobello.com/telemetry/</guid>
-      <description>&lt;p&gt;This a plot that is updated every 5 to 10 minutes that shows the current water level of the lake at Lago Bello in feet.&lt;/p&gt;
+      <description>&lt;p&gt;This a plot that is updated hourly that shows the current water level of the lake at Lago Bello in feet.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
