@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.lagobello.com/blog/</loc>
+    <lastmod>2019-11-09T00:20:08+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.lagobello.com/</loc>
+    <lastmod>2019-11-09T00:20:08+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.lagobello.com/blog/2019/11/09/zillow/</loc>
     <lastmod>2019-11-09T00:20:08+01:00</lastmod>
   </url>
@@ -28,14 +38,7 @@
   </url>
   
   <url>
-    <loc>https://www.lagobello.com/blog/</loc>
-    <lastmod>2019-11-09T00:20:08+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://www.lagobello.com/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -51,14 +54,7 @@
   </url>
   
   <url>
-    <loc>https://www.lagobello.com/</loc>
-    <lastmod>2019-11-09T00:20:08+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://www.lagobello.com/tags/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
