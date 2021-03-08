@@ -6,10 +6,19 @@
     <description>Recent content on Lago Bello</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 09 Nov 2019 00:20:08 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 07 Dec 2019 00:17:08 +0100</lastBuildDate>
     
 	<atom:link href="https://www.lagobello.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Solar</title>
+      <link>https://www.lagobello.com/tools/solar/</link>
+      <pubDate>Sat, 07 Dec 2019 00:17:08 +0100</pubDate>
+      
+      <guid>https://www.lagobello.com/tools/solar/</guid>
+      <description>&lt;p&gt;The following is a Solar Calculator, please use it to find out if Solar is right for you!&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>We are on Zillow</title>
@@ -36,7 +45,8 @@ Please refer to Zillow for our current prices!</description>
       <pubDate>Fri, 27 Apr 2018 18:01:49 +0000</pubDate>
       
       <guid>https://www.lagobello.com/blog/2018/04/27/phase-1-completed/</guid>
-      <description>Phase 1 of the project has been completed, and most lots have been sold. We are currently pre-selling lots for phase 2 of the project.
+      <description>Phase 1 of the project has been completed, and most lots have been sold.
+We are currently pre-selling lots for phase 2 of the project.
 Please contact us at by visiting our Contact page for more info!</description>
     </item>
     
