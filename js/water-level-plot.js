@@ -1,10 +1,15 @@
 function makeplot() {
- 	Plotly.d3.csv("https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/1MgSxyI_AJyMk7-ZpGUoRCUcpONm7CMwWDo2diG-71IU/export?format=csv", function(data){ processData(data) } );
+ 	Plotly.d3.csv("https://docs.google.com/spreadsheets/d/1MgSxyI_AJyMk7-ZpGUoRCUcpONm7CMwWDo2diG-71IU/export?format=csv", function(data){ processData(data) } );
 
 };
 
 function processData(allRows) {
-
+	
+	if (allRows == null){
+		console.log('Failed to retrieve data. Unable to build plot.');
+	   return -1
+	}
+	
 	var x = [], y = [], standard_deviation = [];
 
 	for (var i=0; i<allRows.length; i++) {
