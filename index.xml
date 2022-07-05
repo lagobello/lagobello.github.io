@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lago Bello</title>
@@ -6,11 +6,7 @@
     <description>Recent content on Lago Bello</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 07 Dec 2019 00:17:08 +0100</lastBuildDate>
-    
-	<atom:link href="https://www.lagobello.com/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 07 Dec 2019 00:17:08 +0100</lastBuildDate><atom:link href="https://www.lagobello.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Solar</title>
       <link>https://www.lagobello.com/tools/solar/</link>
@@ -56,7 +52,7 @@ Please contact us at by visiting our Contact page for more info!</description>
       <pubDate>Wed, 27 Dec 2017 00:20:08 +0100</pubDate>
       
       <guid>https://www.lagobello.com/blog/2017/12/27/youtube-video/</guid>
-      <description>Here is a short video of some scenery from South Texas!   </description>
+      <description>Here is a short video of some scenery from South Texas! </description>
     </item>
     
     <item>
@@ -75,7 +71,7 @@ Please contact us at by visiting our Contact page for more info!</description>
       
       <guid>https://www.lagobello.com/contact/</guid>
       <description>We are here to help you Are you curious about something?
-Please feel free to contact us, our customer service center is working for you 24&amp;frasl;7.
+Please feel free to contact us, our customer service center is working for you 24/7.
 If you are in the Brownsville area looking for a beautiful property for your home or investment, look no further!
 Dial: +1 (956)592-4418
 Email: info@lagobello.com</description>
@@ -88,9 +84,9 @@ Email: info@lagobello.com</description>
       
       <guid>https://www.lagobello.com/faq/</guid>
       <description>In case you don&amp;rsquo;t find the answer for your questions please feel free to contact us, our customer support will be happy to help you.
- 1. WHAT IS THE STATUS OF THE PROJECT The project is in development. We are currently selling lots for Phase 2 of the project.
+1. WHAT IS THE STATUS OF THE PROJECT The project is in development. We are currently selling lots for Phase 2 of the project.
 The following has been completed for phase 1.
- Municipal electricity with PUB High pressure fire-fighting installation Sewage and storm drainage Retention wall on 75% of the lake perimeter 20 foot street and gate  2.</description>
+Municipal electricity with PUB High pressure fire-fighting installation Sewage and storm drainage Retention wall on 75% of the lake perimeter 20 foot street and gate 2.</description>
     </item>
     
     <item>
@@ -99,7 +95,7 @@ The following has been completed for phase 1.
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.lagobello.com/properties/</guid>
-      <description>&lt;p&gt;This is an interactive map that shows the status of the individual lots that are for sale.&lt;br /&gt;
+      <description>&lt;p&gt;This is an interactive map that shows the status of the individual lots that are for sale.&lt;br&gt;
 For prices, please go to our &lt;a href=&#34;https://www.zillow.com/profile/vittorio-alfieri/For-Sale-Listings&#34;&gt;Zillow page&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
